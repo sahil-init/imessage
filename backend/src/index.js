@@ -6,6 +6,7 @@ import path from 'path';
 
 import { clerkMiddleware } from '@clerk/express';
 import { connectDB } from './lib/db.js';
+import job from './lib/cron.js';
 
 const app = express();
 
@@ -35,4 +36,17 @@ if (fs.existsSync(publicDir)) {
 app.listen(PORT, () => {
   connectDB();
   console.log(`Server is running on PORT:${PORT}`);
+
+  if (process.env.NODE_ENV === 'production') job.start();
 });
+/* 
+git add .
+git commit -m 'Add cron job to send health check requests every 14 minutes'
+git push origin development
+git checkout main
+git pull origin main
+git merge development
+git push origin main
+git checkout development
+git merge main
+*/
