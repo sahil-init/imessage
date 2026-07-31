@@ -1,16 +1,16 @@
-import { WallpaperProvider } from './context/WallpaperContext';
-import { ThemeProvider } from './context/ThemeContext';
+import WallpaperProvider from './context/WallpaperContext';
+import ThemeProvider from './context/ThemeContext';
 import { Navigate, Route, Routes } from 'react-router';
 import { useAuth } from '@clerk/react';
 
 import ChatPage from './pages/ChatPage';
 import AuthPage from './pages/AuthPage';
+import PageLoader from './components/PageLoader';
 
-function App() {
+const App = () => {
   const { isSignedIn, isLoaded } = useAuth();
 
-  // todo make this a better component
-  if (!isLoaded) return <p>Loading...</p>;
+  if (!isLoaded) return <PageLoader />;
 
   return (
     <ThemeProvider>
@@ -30,6 +30,6 @@ function App() {
       </WallpaperProvider>
     </ThemeProvider>
   );
-}
+};
 
 export default App;

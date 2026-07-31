@@ -33,7 +33,7 @@ function readStoredThemePreset() {
   return DEFAULT_THEME_PRESET_ID;
 }
 
-export function ThemeProvider({ children }) {
+const ThemeProvider = ({ children }) => {
   const [theme, setThemeState] = useState(
     () => readStoredTheme() ?? getSystemTheme(),
   );
@@ -73,4 +73,6 @@ export function ThemeProvider({ children }) {
   return (
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
-}
+};
+
+export default ThemeProvider;

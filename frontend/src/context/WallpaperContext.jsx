@@ -11,7 +11,7 @@ function readStoredWallpaperId() {
   return 'sonoma-horizon';
 }
 
-export function WallpaperProvider({ children }) {
+const WallpaperProvider = ({ children }) => {
   const [wallpaperId, setWallpaperIdState] = useState(readStoredWallpaperId);
 
   useEffect(() => {
@@ -33,4 +33,6 @@ export function WallpaperProvider({ children }) {
       {children}
     </WallpaperContext.Provider>
   );
-}
+};
+
+export default WallpaperProvider;
